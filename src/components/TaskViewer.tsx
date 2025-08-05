@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import type { TaskViewerProps } from '../types';
 import { groupTasksByOriginal, sortDaysByKirmesOrder, filterTasks } from '../utils/taskUtils';
+import { loadFromStorage, saveToStorage, STORAGE_KEYS } from '../utils/storage';
 import NavigationBar from './NavigationBar';
 import FilterSection from './FilterSection';
 import ExportMenu from './ExportMenu';
@@ -16,6 +17,20 @@ const TaskViewer: React.FC<TaskViewerProps> = ({ tasks }) => {
   const [selectedNameOption, setSelectedNameOption] = useState<{ id: string; label: string } | null>(null);
   const [selectedTaskOption, setSelectedTaskOption] = useState<{ id: string; label: string } | null>(null);
   const [selectedDayOption, setSelectedDayOption] = useState<{ id: string; label: string } | null>(null);
+
+  // Load name filter from localStorage on component mount
+  useEffect(() => {
+    const savedNameFilter = loadFromStorage(STORAGE_KEYS.NAME_FILTER, '');
+    if (savedNameFilter) {
+      setSearchTerm(savedNameFilter);
+      setSelectedNameOption({ id: savedNameFilter, label: savedNameFilter });
+    }
+  }, []);
+
+  // Save name filter to localStorage whenever searchTerm changes
+  useEffect(() => {
+    saveToStorage(STORAGE_KEYS.NAME_FILTER, searchTerm);
+  }, [searchTerm]);
 
   // Get unique days and tasks for filters
   const uniqueDays = [...new Set(tasks.map(task => task.date))].filter(Boolean);
@@ -88,6 +103,8 @@ const TaskViewer: React.FC<TaskViewerProps> = ({ tasks }) => {
     setSelectedNameOption(null);
     setSelectedTaskOption(null);
     setSelectedDayOption(null);
+    // Clear name filter from localStorage
+    saveToStorage(STORAGE_KEYS.NAME_FILTER, '');
   };
 
   // Handle name selection from typeahead
@@ -128,6 +145,13 @@ const TaskViewer: React.FC<TaskViewerProps> = ({ tasks }) => {
     }
   };
 
+  // Handle person click from task card
+  const handlePersonClick = (personName: string) => {
+    const nameOption = { id: personName, label: personName };
+    setSelectedNameOption(nameOption);
+    setSearchTerm(personName);
+  };
+
   return (
     <div className="main-layout">
       <NavigationBar />
@@ -161,7 +185,7 @@ const TaskViewer: React.FC<TaskViewerProps> = ({ tasks }) => {
       <div className="content-section" style={{ paddingTop: '30px' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           {filteredTasks.map((task, index) => (
-            <TaskCard key={index} task={task} />
+            <TaskCard key={index} task={task} onPersonClick={handlePersonClick} />
           ))}
           
           {/* Show message when no tasks match the filters */}

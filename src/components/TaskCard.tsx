@@ -3,9 +3,10 @@ import type { GroupedTask } from '../types';
 
 interface TaskCardProps {
   task: GroupedTask;
+  onPersonClick?: (personName: string) => void;
 }
 
-const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
+const TaskCard: React.FC<TaskCardProps> = ({ task, onPersonClick }) => {
   return (
     <div className="task-card">
       <div style={{
@@ -76,6 +77,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
             task.persons.map((person, personIndex) => (
               <span
                 key={personIndex}
+                onClick={() => onPersonClick?.(person)}
                 style={{
                   background: 'var(--secondary-black)',
                   color: 'var(--primary-yellow)',
@@ -83,8 +85,24 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
                   borderRadius: '20px',
                   padding: '6px 15px',
                   fontSize: '14px',
-                  fontWeight: 'bold'
+                  fontWeight: 'bold',
+                  cursor: onPersonClick ? 'pointer' : 'default',
+                  transition: 'all 0.2s ease',
+                  userSelect: 'none'
                 }}
+                onMouseEnter={(e) => {
+                  if (onPersonClick) {
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (onPersonClick) {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }
+                }}
+                title={onPersonClick ? `Nach ${person} filtern` : undefined}
               >
                 {person}
               </span>

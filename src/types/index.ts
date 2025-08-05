@@ -17,7 +17,7 @@ export interface GroupedTask {
 export interface StorageKeys {
   TASKS: string;
   LOGIN_STATUS: string;
-  ADMIN_STATUS: string;
+  NAME_FILTER: string;
 }
 
 export interface LoginPageProps {

@@ -3,7 +3,7 @@ import type { StorageKeys } from '../types';
 export const STORAGE_KEYS: StorageKeys = {
   TASKS: 'kirmes_tasks_data',
   LOGIN_STATUS: 'kirmes_login_status',
-  ADMIN_STATUS: 'kirmes_admin_status'
+  NAME_FILTER: 'kirmes_name_filter'
 };
 
 export const loadFromStorage = <T>(key: string, defaultValue: T = null as T): T => {
