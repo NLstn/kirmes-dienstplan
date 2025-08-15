@@ -13,7 +13,7 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           papaparse: ['papaparse'],
-          html2pdf: ['html2pdf.js']
+          jspdf: ['jspdf']
         }
       }
     }

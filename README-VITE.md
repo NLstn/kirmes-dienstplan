@@ -14,8 +14,7 @@ src/
 │   ├── csvProcessor.ts     # CSV parsing functionality
 │   └── taskUtils.ts        # Task filtering and grouping utilities
 ├── types/
-│   ├── index.ts           # TypeScript interfaces
-│   └── html2pdf.d.ts      # Type definitions for html2pdf.js
+│   └── index.ts           # TypeScript interfaces
 ├── App.tsx                # Main application component
 ├── App.css                # Application styles
 ├── index.css              # Global styles
@@ -133,7 +132,7 @@ const response = await fetch(`/real-data.csv?t=${timestamp}&cb=${Math.random()}`
 - **React 19** - UI framework
 - **TypeScript** - Type safety
 - **PapaParse** - CSV parsing
-- **html2pdf.js** - PDF export functionality
+- **jsPDF** - PDF export functionality
 
 ## Migration Notes
 

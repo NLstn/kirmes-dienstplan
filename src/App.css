@@ -454,7 +454,7 @@ body {
   }
 }
 
-/* Print styles */
+/* Original print styles for browser print function */
 @media print {
   .header-section,
   .export-menu,
@@ -530,24 +530,5 @@ body {
   
   .header-section h1 {
     font-size: 1.3rem;
-  }
-  
-}
-
-/* Print styles */
-@media print {
-  .header-section,
-  .export-menu {
-    display: none !important;
-  }
-  
-  .task-card {
-    break-inside: avoid;
-    margin-bottom: 10px;
-  }
-  
-  body {
-    background: white !important;
-    color: black !important;
   }
 }
