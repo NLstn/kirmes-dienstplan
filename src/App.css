@@ -414,6 +414,10 @@ body {
     font-size: 1.5rem;
   }
   
+  .nav-content {
+    gap: 15px;
+  }
+  
   .nav-title {
     font-size: 1.2rem;
   }
@@ -445,6 +449,10 @@ body {
     font-size: 1.2rem;
   }
   
+  .nav-content {
+    gap: 12px;
+  }
+  
   .nav-title {
     font-size: 1rem;
   }
@@ -473,62 +481,5 @@ body {
   body {
     background: white !important;
     color: black !important;
-  }
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .filter-container {
-    padding: 15px;
-  }
-  
-  .secondary-filters {
-    flex-direction: column;
-  }
-  
-  .filter-select,
-  .task-search-combo {
-    min-width: 100%;
-  }
-  
-  .task-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .task-date-time {
-    text-align: left;
-  }
-  
-  .export-buttons {
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .header-section h1 {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .login-card {
-    padding: 30px 20px;
-  }
-  
-  .filter-container {
-    padding: 10px;
-  }
-  
-  .primary-search input {
-    padding: 12px 30px 12px 12px;
-    font-size: 16px;
-  }
-  
-  .task-card {
-    padding: 15px;
-  }
-  
-  .header-section h1 {
-    font-size: 1.3rem;
   }
 }
