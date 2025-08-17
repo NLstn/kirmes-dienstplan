@@ -1,29 +1,27 @@
 import React, { useState } from 'react';
 import type { LoginPageProps } from '../types';
-import { sha256 } from '../utils/crypto';
+import { LoginService } from '../services/loginService';
 
 const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onWrongPassword, error }) => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  // SHA-256 hash of the correct password
-  const CORRECT_PASSWORD_HASH = '47cc927a6521894aa13fd435aa945967c64421a0e0a7e6f7ec942490c5055cde';
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
     try {
-      const passwordHash = await sha256(password);
-      if (passwordHash === CORRECT_PASSWORD_HASH) {
+      const result = await LoginService.login(password);
+      
+      if (result.success) {
         onLogin();
       } else {
-        onWrongPassword();
+        onWrongPassword(result.error || 'Login fehlgeschlagen');
         setPassword(''); // Clear password field
       }
     } catch (error) {
-      console.error('Error hashing password:', error);
-      onWrongPassword();
+      console.error('Unexpected login error:', error);
+      onWrongPassword('Ein unerwarteter Fehler ist aufgetreten');
       setPassword(''); // Clear password field
     } finally {
       setIsLoading(false);

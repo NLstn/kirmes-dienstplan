@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LoginPage from './components/LoginPage';
 import TaskViewer from './components/TaskViewer';
 import { processCSV } from './utils/csvProcessor';
-import { loadFromStorage, saveToStorage, STORAGE_KEYS } from './utils/storage';
+import { LoginService } from './services/loginService';
 import type { Task } from './types';
 import './App.css';
 
@@ -14,17 +14,15 @@ const App: React.FC = () => {
   // Check localStorage for existing login on component mount
   useEffect(() => {
     // Check if user is already logged in
-    const loginStatus = loadFromStorage(STORAGE_KEYS.LOGIN_STATUS, false);
-    if (loginStatus) {
-      setIsLoggedIn(true);
-    }
+    const checkLogin = async () => {
+      const loggedIn = await LoginService.isLoggedIn();
+      setIsLoggedIn(loggedIn);
+    };
+
+    checkLogin();
 
     // Clear any existing cache first
-    if ('caches' in window) {
-      caches.keys().then(function(names) {
-        for (const name of names) caches.delete(name);
-      });
-    }
+    LoginService.clearCaches();
 
     // Load CSV data
     loadCSVFromFile();
@@ -58,15 +56,7 @@ const App: React.FC = () => {
   };
 
   const handleLogin = () => {
-    // Save login status to localStorage
-    saveToStorage(STORAGE_KEYS.LOGIN_STATUS, true);
-
-    // Clear any cached fetch requests
-    if ('caches' in window) {
-      caches.keys().then(function(names) {
-        for (const name of names) caches.delete(name);
-      });
-    }
+    LoginService.clearCaches();
 
     setIsLoggedIn(true);
     setError('');
@@ -77,8 +67,8 @@ const App: React.FC = () => {
     }, 100);
   };
 
-  const handleWrongPassword = () => {
-    setError('Falsches Passwort. Bitte versuchen Sie es erneut.');
+  const handleWrongPassword = (errorMessage?: string) => {
+    setError(errorMessage || 'Falsches Passwort. Bitte versuchen Sie es erneut.');
   };
 
   if (!isLoggedIn) {

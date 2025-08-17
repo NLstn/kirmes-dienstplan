@@ -22,7 +22,7 @@ export interface StorageKeys {
 
 export interface LoginPageProps {
   onLogin: () => void;
-  onWrongPassword: () => void;
+  onWrongPassword: (error?: string) => void;
   error: string;
 }
 
