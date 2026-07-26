@@ -2,7 +2,7 @@ import { sha256 } from '../utils/crypto';
 import { saveToStorage, loadFromStorage, STORAGE_KEYS } from '../utils/storage';
 
 // SHA-256 hash of the correct password
-const CORRECT_PASSWORD_HASH = '47cc927a6521894aa13fd435aa945967c64421a0e0a7e6f7ec942490c5055cde';
+const CORRECT_PASSWORD_HASH = '20f1ffbb6e8733e0e8aab462e8c66fbfb0e63e5db3145379f4c71aeccbdc3865';
 
 export interface LoginResult {
   success: boolean;

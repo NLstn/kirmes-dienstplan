@@ -1,6 +1,6 @@
-# Kirmes Dienstplan 2025 🎡
+# Kirmes Dienstplan 2026 🎡
 
-A modern React/TypeScript application for managing and viewing task schedules for the Kirmes 2025 event.
+A modern React/TypeScript application for managing and viewing task schedules for the Kirmes 2026 event.
 
 ## 🚀 Quick Start
 
@@ -40,7 +40,7 @@ npm run lint    # Run ESLint
 
 ## 🔑 Login
 
-Default password: `kirmes2025`
+Default password: `kirmes2026`
 
 ---
 

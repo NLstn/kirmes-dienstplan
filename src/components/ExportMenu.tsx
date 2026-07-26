@@ -20,7 +20,7 @@ const ExportMenu: React.FC<ExportMenuProps> = ({ searchTerm, filteredTasks }) =>
     // Header
     doc.setFontSize(20);
     doc.setFont('helvetica', 'bold');
-    doc.text('Kirmes Dienstplan 2025', margin, currentY);
+    doc.text('Kirmes Dienstplan 2026', margin, currentY);
     currentY += 10;
 
     doc.setFontSize(12);

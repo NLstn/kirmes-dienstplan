@@ -41,7 +41,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onWrongPassword, error }
       {/* Hero Section */}
       <div className="hero-section">
         <h1 className="hero-title">Kirmes Dienstplan</h1>
-        <div className="hero-date">2025</div>
+        <div className="hero-date">2026</div>
         <p className="hero-subtitle">Bartholomäus-Kirmes Kettig</p>
       </div>
 
@@ -101,7 +101,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin, onWrongPassword, error }
           </div>
         </div>
         <div style={{ marginTop: '20px', fontSize: '14px' }}>
-          © 2025 Kirmesgesellschaft Kettig '87 e.V
+          © 2026 Kirmesgesellschaft Kettig '87 e.V
         </div>
       </footer>
     </>

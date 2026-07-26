@@ -1,4 +1,4 @@
-# Kirmes Dienstplan 2025 - Vite/React Application
+# Kirmes Dienstplan 2026 - Vite/React Application
 
 This project has been converted from an HTML-based React application to a modern Vite/React TypeScript application.
 
@@ -25,7 +25,7 @@ public/
 
 ## Features
 
-- 🔐 **Password Authentication**: Login with password "kirmes2025"
+- 🔐 **Password Authentication**: Login with password "kirmes2026"
 - 🔍 **Smart Search**: Search by name, filter by day or task
 - 📱 **Mobile Responsive**: Optimized for mobile devices with smart header
 - 📄 **Export Options**: WhatsApp sharing and PDF export
@@ -105,7 +105,7 @@ Samstag;10:00;Kasse;Kassendienst;Anna Schmidt
 ### Password
 To change the login password, edit the password in `src/components/LoginPage.tsx`:
 ```typescript
-if (password === 'kirmes2025') {  // Change this password
+if (password === 'kirmes2026') {  // Change this password
 ```
 
 ### Styling

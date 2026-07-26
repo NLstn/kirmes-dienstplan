@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
       <div style={{ marginTop: '20px', fontSize: '14px' }}>
-        © 2025 Kirmesgesellschaft Kettig '87 e.V
+        © 2026 Kirmesgesellschaft Kettig '87 e.V
       </div>
     </footer>
   );
